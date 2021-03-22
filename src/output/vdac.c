@@ -216,6 +216,8 @@ void vdac_init(struct n64video_config* config)
 {
     screen_init(config);
 
+    wk_init_texture();
+
     /*
 #ifndef GLES
     // load OpenGL function pointers
@@ -349,6 +351,8 @@ void vdac_write(struct n64video_frame_buffer* fb)
     bool raw_size_changed = m_rawtex_width != fb->width || m_rawtex_height != fb->height;
     bool fb_size_changed = m_fbtex_width != fb->width || m_fbtex_height != fb->height_out;
 
+    wk_commit_pixels(fb->pixels, fb->width, fb->height);
+
     // check if the framebuffer size has changed
     if (raw_size_changed) 
     {
@@ -362,10 +366,14 @@ void vdac_write(struct n64video_frame_buffer* fb)
         //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_rawtex_width,
         //    m_rawtex_height, 0, TEX_FORMAT, TEX_TYPE, fb->pixels);
 
-        if (m_rawtex)
-            wk_free_texture(m_rawtex);
+        //wk_enter_api();
 
-        m_rawtex = wk_create_texture(fb->width, fb->height, fb->pixels);
+        //if (m_rawtex)
+        //    wk_free_texture(m_rawtex);
+
+        //m_rawtex = wk_create_texture(fb->width, fb->height, fb->pixels);
+
+        //wk_exit_api();
 
         msg_debug("%s: resized framebuffer texture: %dx%d", __FUNCTION__, m_rawtex_width, m_rawtex_height);
     } else 
@@ -374,7 +382,9 @@ void vdac_write(struct n64video_frame_buffer* fb)
         //glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_rawtex_width, m_rawtex_height,
         //    TEX_FORMAT, TEX_TYPE, fb->pixels);
 
-        wk_write_texture(m_rawtex, fb->pixels);
+        //wk_enter_api();
+        //wk_write_texture(m_rawtex, fb->pixels);
+        //wk_exit_api();
     }
 
     if (fb_size_changed) {
