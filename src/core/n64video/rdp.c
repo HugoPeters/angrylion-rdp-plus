@@ -460,7 +460,7 @@ static const struct
 
 static void deduce_derivatives(struct rdp_state* wstate);
 
-#include "rdp/rdram.c"
+#include "rdp/AL_rdram.c"
 #include "rdp/dither.c"
 #include "rdp/blender.c"
 #include "rdp/combiner.c"

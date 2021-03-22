@@ -276,9 +276,11 @@ static void vi_process_full_parallel(uint32_t worker_id)
 
             if (x >= minhpass && x < maxhpass) {
                 *pixel = color;
+                pixel->a = 255;
                 gamma_filters(pixel, ctrl.gamma_enable, ctrl.gamma_dither_enable, &state[worker_id].rseed);
             } else {
                 pixel->r = pixel->g = pixel->b = 0;
+                pixel->a = 255;
             }
         }
 
