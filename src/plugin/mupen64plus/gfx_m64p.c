@@ -181,11 +181,11 @@ EXPORT void CALL GFXANGRYLION_ProcessRDPList(void)
 EXPORT int CALL GFXANGRYLION_RomOpen (void)
 {
     win_fullscreen = ConfigGetParamBool(configVideoGeneral, KEY_FULLSCREEN);
-    win_width = ConfigGetParamInt(configVideoGeneral, KEY_SCREEN_WIDTH);
-    win_height = ConfigGetParamInt(configVideoGeneral, KEY_SCREEN_HEIGHT);
+    win_width = 3 * ConfigGetParamInt(configVideoGeneral, KEY_SCREEN_WIDTH);
+    win_height = 3 * ConfigGetParamInt(configVideoGeneral, KEY_SCREEN_HEIGHT);
 
-    config.parallel = ConfigGetParamBool(configVideoAngrylionPlus, KEY_PARALLEL);
-    config.num_workers = ConfigGetParamInt(configVideoAngrylionPlus, KEY_NUM_WORKERS);
+	config.parallel = true; // ConfigGetParamBool(configVideoAngrylionPlus, KEY_PARALLEL);
+	config.num_workers = 24; // ConfigGetParamInt(configVideoAngrylionPlus, KEY_NUM_WORKERS);
     config.busyloop = ConfigGetParamBool(configVideoAngrylionPlus, KEY_BUSY_LOOP);
     config.vi.mode = ConfigGetParamInt(configVideoAngrylionPlus, KEY_VI_MODE);
     config.vi.interp = ConfigGetParamInt(configVideoAngrylionPlus, KEY_VI_INTERP);
